@@ -1,0 +1,42 @@
+---
+
+- name: "download script file"
+  ansible.builtin.get_url:
+    url: "https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh"
+    dest: "/tmp/omz-install.sh"
+    mode: "+x"
+
+- name: "install omz using downloaded binary file"
+  ansible.builtin.command: sh /tmp/omz-install.sh
+  args:
+    creates: /opt/homebrew/bin/brew
+
+- name: "delete omz temporary file"
+  ansible.builtin.file:
+    path: "/tmp/omz-install.sh"
+    state: absent
+
+- name: "install p10k theme for zsh"
+  ansible.builtin.git:
+    repo: https://github.com/romkatv/powerlevel10k.git
+    dest: "{{ lookup('env','HOME') }}/.oh-my-zsh/custom/themes/powerlevel10k"
+    depth: 1
+
+- name: "apply p10k theme configuration file"
+  ansible.builtin.template:
+    src: templates/.p10k.zsh
+    dest: "{{ lookup('ansible.builtin.env', 'HOME') }}/.p10k.zsh"
+
+- name: "install zsh-autosuggestions plugin"
+  ansible.builtin.git:
+    repo: https://github.com/zsh-users/zsh-autosuggestions
+    dest: "{{ lookup('env','HOME') }}/.oh-my-zsh/custom/plugins/zsh-autosuggestions"
+    depth: 1
+
+- name: "apply fzf key bindings"
+  ansible.builtin.command: /opt/homebrew/opt/fzf/install --completion --key-bindings --no-update-rc
+
+- name: "apply configuration file"
+  ansible.builtin.template:
+    src: templates/.zshrc
+    dest: "{{ lookup('ansible.builtin.env', 'HOME') }}/.zshrc"

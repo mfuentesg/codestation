@@ -1,0 +1,20 @@
+---
+
+- name: "download script file"
+  ansible.builtin.get_url:
+    url: "https://spacevim.org/install.sh"
+    dest: "/tmp/space-install.sh"
+    mode: "+x"
+
+- name: "install space vim using downloaded script file"
+  ansible.builtin.command: bash /tmp/space-install.sh
+
+- name: "delete temp file"
+  ansible.builtin.file:
+    path: "/tmp/space-install.sh"
+    state: absent
+
+- name: "apply configuration file"
+  ansible.builtin.template:
+    src: templates/init.toml
+    dest: "{{ lookup('ansible.builtin.env', 'HOME') }}/.SpaceVim.d/init.toml"

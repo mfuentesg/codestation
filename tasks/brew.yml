@@ -1,0 +1,67 @@
+---
+
+- name: "download script file"
+  ansible.builtin.get_url:
+    url: "https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh"
+    dest: "/tmp/brew-install.sh"
+    mode: "+x"
+
+- name: "install brew using downloaded binary file"
+  ansible.builtin.command: sh /tmp/brew-install.sh
+  args:
+    creates: /opt/homebrew/bin/brew
+
+- name: "delete temporary file"
+  ansible.builtin.file:
+    path: "/tmp/brew-install.sh"
+    state: absent
+
+- name: "update homebrew"
+  community.general.homebrew:
+    update_homebrew: true
+    upgrade_all: true
+
+- name: "tap brew packages"
+  community.general.homebrew_tap:
+    name:
+      - homebrew/cask-fonts
+
+- name: "install cask packages"
+  community.general.homebrew_cask:
+    install_options:
+      - adopt
+    name:
+      - iterm2
+      - google-chrome
+      - spotify
+      - font-mononoki-nerd-font
+      - vagrant
+      - slack
+    state: present
+
+- name: "install brew packages"
+  community.general.homebrew:
+    install_options:
+      - adopt
+    name:
+      - zsh
+      - go
+      - mfuentesg/tap/ksd
+      - bat
+      - git
+      - python3
+      - fzf
+      - colima
+      - fnm
+      - kubectx
+      - kube-linter
+      - kubectl
+      - nmap
+      - openssh
+      - openssl
+      - tree
+      - yamllint
+      - ansible
+      - ansible-lint
+      - mkcert
+    state: present

@@ -1,0 +1,8 @@
+---
+
+- hosts: localhost
+  gather_facts: true
+  tasks:
+    - include_tasks: tasks/brew.yml
+    - include_tasks: tasks/ohmyzsh/tasks.yml
+    - include_tasks: tasks/spacevim/tasks.yml
