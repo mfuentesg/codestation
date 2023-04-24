@@ -38,6 +38,7 @@
       - vagrant
       - slack
       - rectangle
+      - karabiner-elements
     state: present
 
 - name: "install brew packages"
