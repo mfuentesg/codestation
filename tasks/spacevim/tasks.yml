@@ -15,6 +15,6 @@
     state: absent
 
 - name: "apply configuration file"
-  ansible.builtin.template:
+  ansible.builtin.copy:
     src: templates/init.toml
     dest: "{{ lookup('ansible.builtin.env', 'HOME') }}/.SpaceVim.d/init.toml"
