@@ -1,0 +1,15 @@
+---
+extends: default
+
+ignore: |
+  infrastructure
+  ansible/k3s
+  ansible/secrets.yml
+  .github
+
+rules:
+  line-length:
+    max: 120
+    level: warning
+  truthy:
+    allowed-values: ['true', 'false', 'yes', 'no']
