@@ -1,0 +1,16 @@
+[pager]
+	tag = less -F -X
+	diff = false
+	log = true
+	branch = false
+	show = false
+[user]
+	name = Marcelo Fuentes
+	email = marceloe.fuentes@gmail.com
+[alias]
+	br = branch --sort=\"-committerdate\" --format \"%(color:red)%(objectname:short)%(color:reset) - %(refname:short)%(color:red)%(HEAD)%(color:reset)%(color:green) %(committerdate)%(color:reset)\"
+	update = "!f() { branch=$(git rev-parse --abbrev-ref -q HEAD); if [ \"$1\" != \"\" ]; then branch=$1; fi; git fetch; git checkout $branch && git pull --rebase origin $branch && git submodule update --init; }; f"
+	cleanup = !git fetch && git fetch --prune && git prune && git branch --merged | egrep -v \"(^\\*|master|dev|main)\" | xargs git branch -d
+[core]
+	editor = vim
+	pager = less -F -X
