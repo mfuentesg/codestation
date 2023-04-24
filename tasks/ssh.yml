@@ -1,0 +1,14 @@
+---
+
+- name: "create .ssh folder"
+  ansible.builtin.file:
+    path: "{{ lookup('ansible.builtin.env', 'HOME') }}/.ssh"
+    state: directory
+    mode: "0700"
+
+- name: "create ssh keypair"
+  community.crypto.openssh_keypair:
+    path: "{{ lookup('ansible.builtin.env', 'HOME') }}/.ssh/id_ed25519"
+    type: ed25519
+    comment: "marceloe.fuentes@gmail.com"
+    state: present
