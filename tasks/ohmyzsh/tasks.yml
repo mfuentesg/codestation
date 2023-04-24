@@ -19,7 +19,7 @@
 - name: "install p10k theme for zsh"
   ansible.builtin.git:
     repo: https://github.com/romkatv/powerlevel10k.git
-    dest: "{{ lookup('ansible.builtin.env','HOME') }}/.oh-my-zsh/custom/themes/powerlevel10k"
+    dest: "{{ lookup('ansible.builtin.env', 'HOME') }}/.oh-my-zsh/custom/themes/powerlevel10k"
     depth: 1
 
 - name: "apply p10k theme configuration file"
@@ -30,13 +30,13 @@
 - name: "install zsh-autosuggestions plugin"
   ansible.builtin.git:
     repo: https://github.com/zsh-users/zsh-autosuggestions
-    dest: "{{ lookup('ansible.builtin.env','HOME') }}/.oh-my-zsh/custom/plugins/zsh-autosuggestions"
+    dest: "{{ lookup('ansible.builtin.env', 'HOME') }}/.oh-my-zsh/custom/plugins/zsh-autosuggestions"
     depth: 1
 
 - name: "install zsh-syntax-highlighting plugin"
   ansible.builtin.git:
     repo: https://github.com/zsh-users/zsh-syntax-highlighting.git
-    dest: "{{ lookup('ansible.builtin.env','HOME') }}/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting"
+    dest: "{{ lookup('ansible.builtin.env', 'HOME') }}/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting"
     depth: 1
 
 - name: "apply fzf key bindings"

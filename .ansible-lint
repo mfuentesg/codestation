@@ -1,0 +1,21 @@
+---
+
+skip_list:
+  - command-instead-of-module  # Using command rather than module
+  - package-latest  # Package installs should not use latest
+  - git-latest  # Git checkouts must contain explicit version
+  - line-length
+  - yaml[line-length]
+  - no-changed-when
+  - name[casing]
+  - risky-shell-pipe
+  - no-free-form
+  - risky-file-permissions
+
+warn_list:
+  - internal-error
+
+exclude_paths:
+  - ansible/k3s
+  - ansible/secrets.yml
+  - .github
