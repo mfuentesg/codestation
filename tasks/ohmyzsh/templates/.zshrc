@@ -133,5 +133,4 @@ eval "$(fnm env --use-on-cd)"
 
 # kubectl completion
 source <(kubectl completion zsh)
-echo 'alias k=kubectl' >>~/.zshrc
-echo 'compdef __start_kubectl k' >>~/.zshrc
+compdef __start_kubectl k
