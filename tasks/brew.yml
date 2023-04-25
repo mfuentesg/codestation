@@ -66,4 +66,5 @@
       - ansible
       - ansible-lint
       - mkcert
+      - kubeseal
     state: present
