@@ -39,6 +39,7 @@
       - slack
       - rectangle
       - karabiner-elements
+      - tailscale
     state: present
 
 - name: "install brew packages"
