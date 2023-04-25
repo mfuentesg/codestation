@@ -118,6 +118,7 @@ export PATH=$HOME/.fnm:$PATH
 # aliases
 alias cat="bat --theme 'Dracula' --pager='less -LX'"
 alias k="kubectl"
+alias kubeseal="kubeseal --controller-namespace default --controller-name sealed-secrets --format yaml"
 
 # use homebrew installed packages
 alias ssh="/opt/homebrew/bin/ssh"
@@ -129,3 +130,8 @@ alias python="/opt/homebrew/bin/python3"
 alias git="/opt/homebrew/bin/git"
 
 eval "$(fnm env --use-on-cd)"
+
+# kubectl completion
+source <(kubectl completion zsh)
+echo 'alias k=kubectl' >>~/.zshrc
+echo 'compdef __start_kubectl k' >>~/.zshrc
