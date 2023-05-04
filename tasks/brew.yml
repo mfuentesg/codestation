@@ -67,4 +67,5 @@
       - ansible-lint
       - mkcert
       - kubeseal
+      - jq
     state: present
