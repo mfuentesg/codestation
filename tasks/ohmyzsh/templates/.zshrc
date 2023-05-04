@@ -134,3 +134,4 @@ eval "$(fnm env --use-on-cd)"
 # kubectl completion
 source <(kubectl completion zsh)
 compdef __start_kubectl k
+source ~/.secrets
