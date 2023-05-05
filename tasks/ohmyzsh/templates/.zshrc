@@ -112,7 +112,6 @@ source $ZSH/oh-my-zsh.sh
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-export PATH=$PATH:/opt/homebrew/bin/
 export PATH=$HOME/.fnm:$PATH
 
 # aliases
@@ -120,18 +119,12 @@ alias cat="bat --theme 'Dracula' --pager='less -LX'"
 alias k="kubectl"
 alias kubeseal="kubeseal --controller-namespace default --controller-name sealed-secrets --format yaml"
 
-# use homebrew installed packages
-alias ssh="/opt/homebrew/bin/ssh"
-alias ssh-add="/opt/homebrew/bin/ssh-add"
-alias ssh-agent="/opt/homebrew/bin/ssh-agent"
-alias ssh-keygen="/opt/homebrew/bin/ssh-keygen"
-alias ssh-keyscan="/opt/homebrew/bin/ssh-keyscan"
-alias python="/opt/homebrew/bin/python3"
-alias git="/opt/homebrew/bin/git"
-
 eval "$(fnm env --use-on-cd)"
 
 # kubectl completion
 source <(kubectl completion zsh)
 compdef __start_kubectl k
 source ~/.secrets
+
+# use homebrew installed packages instead local ones
+export PATH="/opt/homebrew/sbin:/opt/homebrew/bin:$PATH"

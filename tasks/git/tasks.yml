@@ -1,6 +1,6 @@
 ---
 
-- name: "apply custom .gitconfig file"
+- name: apply custom .gitconfig file
   ansible.builtin.copy:
     src: templates/.gitconfig
     dest: "{{ lookup('ansible.builtin.env', 'HOME') }}/.gitconfig"

@@ -1,53 +1,53 @@
 ---
 
-- name: "download script file"
+- name: download script file
   ansible.builtin.get_url:
     url: "https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh"
     dest: "/tmp/omz-install.sh"
     mode: "+x"
 
-- name: "install omz using downloaded binary file"
+- name: install omz using downloaded binary file
   ansible.builtin.command: sh /tmp/omz-install.sh
   args:
     creates: /opt/homebrew/bin/brew
 
-- name: "delete omz temporary file"
+- name: delete omz temporary file
   ansible.builtin.file:
     path: "/tmp/omz-install.sh"
     state: absent
 
-- name: "install p10k theme for zsh"
+- name: install p10k theme for zsh
   ansible.builtin.git:
     repo: https://github.com/romkatv/powerlevel10k.git
     dest: "{{ lookup('ansible.builtin.env', 'HOME') }}/.oh-my-zsh/custom/themes/powerlevel10k"
     depth: 1
 
-- name: "apply p10k theme configuration file"
+- name: apply p10k theme configuration file
   ansible.builtin.copy:
     src: templates/.p10k.zsh
     dest: "{{ lookup('ansible.builtin.env', 'HOME') }}/.p10k.zsh"
 
-- name: "install zsh-autosuggestions plugin"
+- name: install zsh-autosuggestions plugin
   ansible.builtin.git:
     repo: https://github.com/zsh-users/zsh-autosuggestions
     dest: "{{ lookup('ansible.builtin.env', 'HOME') }}/.oh-my-zsh/custom/plugins/zsh-autosuggestions"
     depth: 1
 
-- name: "install zsh-syntax-highlighting plugin"
+- name: install zsh-syntax-highlighting plugin
   ansible.builtin.git:
     repo: https://github.com/zsh-users/zsh-syntax-highlighting.git
     dest: "{{ lookup('ansible.builtin.env', 'HOME') }}/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting"
     depth: 1
 
-- name: "apply fzf key bindings"
+- name: apply fzf key bindings
   ansible.builtin.command: /opt/homebrew/opt/fzf/install --completion --key-bindings --no-update-rc
 
-- name: "apply configuration file"
+- name: apply configuration file
   ansible.builtin.copy:
     src: templates/.zshrc
     dest: "{{ lookup('ansible.builtin.env', 'HOME') }}/.zshrc"
 
-- name: "create secrets file"
+- name: create secrets file
   ansible.builtin.file:
     path: "{{ lookup('ansible.builtin.env', 'HOME') }}/.secrets"
     state: file
