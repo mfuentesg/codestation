@@ -35,7 +35,6 @@
       - google-chrome
       - spotify
       - font-mononoki-nerd-font
-      - vagrant
       - slack
       - rectangle
     state: present
