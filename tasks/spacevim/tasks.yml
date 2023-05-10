@@ -1,5 +1,12 @@
 ---
 
+- name: create spacevim directory
+  tags: spacevim
+  ansible.builtin.file:
+    path: "{{ lookup('ansible.builtin.env', 'HOME') }}/.SpaceVim.d"
+    state: directory
+    mode: "a+x"
+
 - name: download script file
   ansible.builtin.get_url:
     url: "https://spacevim.org/install.sh"
