@@ -1,0 +1,6 @@
+---
+
+- name: create code directory
+  ansible.builtin.file:
+    dest: "{{ lookup('ansible.builtin.env', 'HOME') }}/code"
+    state: directory
