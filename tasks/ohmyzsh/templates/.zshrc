@@ -114,6 +114,7 @@ source $ZSH/oh-my-zsh.sh
 
 export PATH=$HOME/.fnm:$PATH
 export PATH="/opt/homebrew/sbin:/opt/homebrew/bin:$PATH"
+export PATH="/opt/homebrew/opt/curl/bin:$PATH"
 
 # aliases
 alias cat="bat --theme 'Dracula' --pager='less -LX'"
