@@ -37,6 +37,7 @@
       - font-mononoki-nerd-font
       - slack
       - rectangle
+      - miniconda
     state: present
 
 - name: install brew packages
